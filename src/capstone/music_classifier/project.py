@@ -115,7 +115,7 @@ print('test: ', len(img_test))
 # fashion_mnist_test = torchvision.datasets.FashionMNIST('', train=False, transform = transform, download=True)
 
 # We will create DataLoaders just like before with a batch size of 100
-batch_size = 32
+batch_size = 8
 dataloaders = {'train': DataLoader(img_train, batch_size=batch_size),
                'val': DataLoader(img_val, batch_size=batch_size),
                'test': DataLoader(img_test, batch_size=batch_size)}
@@ -125,9 +125,9 @@ dataset_sizes = {'train': len(img_train),
                  'test': len(img_test)}
 print(f'dataset_sizes = {dataset_sizes}')
 
-class CNNClassifier(nn.Module):
+class MusicClassifier(nn.Module):
     def __init__(self, num_classes = 2, dropout = 0.25):
-        super(CNNClassifier, self).__init__()
+        super(MusicClassifier, self).__init__()
         self.dropout = nn.Dropout(dropout)
 
         ####
@@ -319,7 +319,7 @@ learning_rate = 0.0005
 num_epochs = 10
 randomize_epochs = 1 # how often to randmize the dataset
 
-model = CNNClassifier(dropout=0.1).to(device)
+model = MusicClassifier(dropout=0.1).to(device)
 print(model)
 
 # loss and optimizer
