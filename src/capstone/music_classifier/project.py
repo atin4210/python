@@ -67,8 +67,15 @@ class SongImageDataset(Dataset):
         return self.transform(image), mood, genre
 
 ###
-# Genre and Mood are categorical variables. We will need to convert them to numerical values.
-# Genre:
+# Mood and Genre (not used at present for classification) are categorical variables. We will use the following encoding:
+#
+# Mood:
+# 0 - Mellow
+# 1 - Not Mellow
+# 2 - Chill (not used)
+# 3 - Danceable (not used)
+#
+# Genre: (NOT USED)
 # 0 - Jazz
 # 1 - Jazz with Vocals
 # 2 - Classical
@@ -77,17 +84,9 @@ class SongImageDataset(Dataset):
 # 5 - World
 # 6 - Electronica
 # 7 - Other
-#
-# Mood:
-# 0 - Chill
-# 1 - Mellow
-# 2 - Not Mellow
-# 3 - Danceable
 ###
 
 transform = v2.Compose([
-    v2.Resize(size=(400, 1600), antialias=True),
-    v2.ToDtype(torch.float32, scale=True),
     v2.ToTensor(), 
     transforms.Normalize([0.5], [0.5])])
 
