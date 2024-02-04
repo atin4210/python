@@ -1,3 +1,19 @@
+###
+# Project file for the music classifier project for the MIT AI Capstone project.
+# This file will contain the code to train and test the model.
+# 
+# The model is a CNN that takes in a mel-spectrogram image and outputs the mood of the song. For now the genre is not used in the model.
+# It will be trained on a dataset created from my personal music library and the mel-spectrogram images will be generated using the 
+# librosa library.
+#
+# The dataset generation is done using a shell script and a python program. The shell script goes through specific music directories
+# and generates a CSV file containing the filename, genre, and mood of the song. The python program will then read the CSV file and generate
+# the mel-spectrogram images in a directory and create another CSV file containing the image filename, genre, and mood, which is then used
+# by the CNN model to train and test the model.
+# 
+# This Python file is the initial project file, prior to being moved to a Jupyter notebook for local testing and then to Google Colab for
+# final training and testing.
+###
 import os
 import torch
 import torch.nn as nn
@@ -93,11 +109,10 @@ img_val, img_test = torch.utils.data.random_split(img_val, [int(len(img_val)*0.5
 print('validation: ', len(img_val))
 print('test: ', len(img_test))
 
+# test with alternative dataset to make sure that things are working correctly
 # fashion_mnist_train = torchvision.datasets.FashionMNIST('', train=True, transform =transform, download=True)
-
 # # We will split out train dataset into train and validation!
 # fashion_mnist_train, fashion_mnist_val = torch.utils.data.random_split(fashion_mnist_train, [int(np.floor(len(fashion_mnist_train)*0.75)), int(np.ceil(len(fashion_mnist_train)*0.25))])
-
 # fashion_mnist_test = torchvision.datasets.FashionMNIST('', train=False, transform = transform, download=True)
 
 # We will create DataLoaders just like before with a batch size of 100
@@ -300,24 +315,6 @@ def classify_predictions(model, device, dataloader):
         all_scores = torch.cat((all_scores, scores), 0)
         all_preds = torch.cat((all_preds, preds), 0)
     return all_preds.detach().cpu(), all_labels.detach().cpu(), all_scores.detach().cpu()
-
-# # plot a digit ground truth and autoencoding
-# def view_melspec(genre, mood, count = 1):
-#     fig = plt.figure()
-#     idx = 1
-#     for inputs, genres, moods in dataloaders["test"]:
-#         for i, input in enumerate(inputs):
-#             # we only want to view a certain class
-#             if (moods[i] != mood and genres[i] != genre):
-#                 continue
-#             # plot the ground truth
-#             ax = fig.add_subplot(1, count, idx)
-#             ax.imshow(input, cmap='magma')
-#             idx += 1
-#             if idx > count:
-#                 break
-#         if idx > count:
-#             break
 
 learning_rate = 0.0005
 num_epochs = 10
