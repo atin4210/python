@@ -36,4 +36,23 @@ For the CNN Model Training and Testing, I will have to do the following:
 
 The final CNN model is as follows:
 
+    MusicClassifier(
+    (conv0): Conv2d(4, 32, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (relu):  ReLU()
+    (pool):  MaxPool2d(kernel_size=2, stride=2)
+    (conv1): Conv2d(32, 64, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (relu):  ReLU()
+    (pool):  MaxPool2d(kernel_size=2, stride=2)
+    (conv2): Conv2d(64, 128, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (relu):  ReLU()
+    (pool):  MaxPool2d(kernel_size=2, stride=2)
+    (conv3): Conv2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+    (relu):  ReLU()
+    (pool):  MaxPool2d(kernel_size=2, stride=2)
+    (fc1):   Linear(in_features=640000, out_features=512, bias=True)
+    (relu):  ReLU()
+    (dropout): Dropout(p=0.5, inplace=False)
+    (fc2):   Linear(in_features=512, out_features=2, bias=True)
+    )
+
 Since the images are 1600x400 pixels in size and contain a lot of detail, the CNN contains 256 out-channels for the last of 4 Convolution layers. There are 4 MaxPool2D layers to scale down the images to a manageable size for linearizing. Even though the dataset is very small (410 images), but the images are large (1600x400 pixels), I had to use a batch size of 8, because any larger (like 16 or more) was causing the GPUs to run out of memory. As an added benefit, the small batch size introduced a little bit of noise in the gradient estimation and thereby providing implicit regularization.
