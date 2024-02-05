@@ -4,7 +4,7 @@ Atin Kothari
 February 03, 2024
 
 ### Proposal
-This is a music classification project that uses a Convolution Neural Network (CNN) to analyze music and determine its mood. Its job is to classify music into the 'Mellow' or 'Not Mellow' moods. Eventually, it will become a more robust CNN that can classify in multiple categories, for example in Mood and Genre.
+Create a Music Classifier using a Convolution Neural Network (CNN) to analyze music and determine its mood. Its job is to classify music into the 'Mellow' or 'Not Mellow' moods. Eventually, it will become a more robust CNN that can classify in multiple categories, for example in Mood and Genre.
 
 ### Domain Background
 Music/Audio Analysis is an ongoing research area and application of the Music Information Retrieval (MIR) field. 
