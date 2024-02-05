@@ -1,5 +1,5 @@
 ###
-# Project file for the music classifier project for the MIT AI Capstone project.
+# Development Project file for the music classifier project for the MIT AI Capstone project.
 # This file will contain the code to train and test the model.
 # 
 # The model is a CNN that takes in a mel-spectrogram image and outputs the mood of the song. For now the genre is not used in the model.
